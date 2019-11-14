@@ -1,0 +1,21 @@
+This slackbot performs various functions.
+
+ CLASS TIME
+  Bot will tell you how much time is left until the next class when it hears mention of 'class', in any context. It will do this in human  parsable language of which seconds are the smallest increments (yrs, days, hrs, mins, secs). This was hard to test because of the dynamic nature of time related calculations that are relative to the current time, but it seems to work. 
+  
+  BREAK MEME
+  Bot will respond that you to take a break when it hears mention of certain coding related terms (like: code|coding|function|argument|parameter). It will reply that you take a break from (whatever the first term matched was). It will also send a random funny coding-related meme.
+  
+  BLAME SOMEONE
+    When the bot hears 'blame' it will randomly select one of the members of our class to blame for whatever it is.
+    
+  OPERATIONS
+    The bot can calculate some basic operations. This works only for positive numbers in format NumberOperatorNumber or multiples of NumberOperatorNumber NumberOperatorNumber NumberOperatorNumber which then returns answer answer answer.
+    
+    Issues: Both the break meme and operations functions would potentially interfere with the flow of a channel dedicated to coding. Reducing the number of words to match, as well as reducing those to the more obscure ones would help. The .match for the message itself seemed to return different values depending on whether it .hear or .respond methods, the latter returning very little of the original message. I'm not sure why this is the case, but it limited what I was able to do using the .match method.
+    
+    There are comments in my code that explain more of the issues I had at various points. Any feedback is welcome !
+    
+
+
+  
