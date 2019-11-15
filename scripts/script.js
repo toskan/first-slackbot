@@ -149,33 +149,36 @@ module.exports = function(robot) {
 
           //this function can take an operation (-, +, *, %, /) with two (positive only, sorry) numbers. Written as NumberOperatorNumber or multiples NumberOperatorNumber NumberOperatorNumber NumberOperatorNumber, which returns result result result
 
-          robot.hear(/ \d*\*\d*|\d*\+\d*|\d*\-\d*|\d*\/\d*|\d*\%\d*&&^(?!\s*$).+/g, function(msg) {
+          // \d*\*\d*|\d*\+\d*|\d*\-\d*|\d*\/\d*|\d*\%\d*&&^(?!\s*$).+
+
+          robot.respond(/\d*\*\d*|\d*\+\d*|\d*\-\d*|\d*\/\d*|\d*\%\d*&&^(?!\s*$).+/g, function(msg) {
           let operationArray = msg.match;
-          let numberArray = [];
-          let calcs = [];
-               for (let i = 0; i < operationArray.length; i++) {
-               if ((operationArray[i]).match(/\+/)) {
-                    numberArray = operationArray[i].split('+');
-                    calcs.push(msg.send( Number(numberArray[0]) + Number(numberArray[1])));
-               }
-               else if ((operationArray[i]).match(/\-/)) {
-                    numberArray = operationArray[i].split('-');
-                    calcs.push(msg.send( Number(numberArray[0]) - Number(numberArray[1])));
-               }
-               else if ((operationArray[i]).match(/\//)) {
-                    numberArray = operationArray[i].split('/');
-                    calcs.push(msg.send( Number(numberArray[0]) / Number(numberArray[1])));
-               }
-               else if ((operationArray[i]).match(/\*/)) {
-                    numberArray = operationArray[i].split('*');
-                    calcs.push(msg.send( Number(numberArray[0]) * Number(numberArray[1])));
-               }
-               else if ((msg.match[i]).match(/\%/)) {
-                    numberArray = operationArray[i].split('%');
-                    calcs.push(msg.send( Number(numberArray[0]) % Number(numberArray[1])));
-               }
-          }  
-          return calcs; 
+          return msg.send(operationArray + " + " + operationArray[0] + " + " + operationArray[1] + "  + "  + operationArray.length + " + ");
+          // let numberArray = [];
+          // let calcs = [];
+          //      for (let i = 0; i < operationArray.length; i++) {
+          //      if ((operationArray[i]).match(/\+/)) {
+          //           numberArray = operationArray[i].split('+');
+          //           calcs.push(msg.send("Calculated " + (Number(numberArray[0]) + Number(numberArray[1]))));
+          //      }
+          //      else if ((operationArray[i]).match(/\-/)) {
+          //           numberArray = operationArray[i].split('-');
+          //           calcs.push(msg.send( "Calculated " + (Number(numberArray[0]) - Number(numberArray[1]))));
+          //      }
+          //      else if ((operationArray[i]).match(/\//)) {
+          //           numberArray = operationArray[i].split('/');
+          //           calcs.push(msg.send( "Calculated " + (Number(numberArray[0]) / Number(numberArray[1]))));
+          //      }
+          //      else if ((operationArray[i]).match(/\*/)) {
+          //           numberArray = operationArray[i].split('*');
+          //           calcs.push(msg.send( "Calculated " + (Number(numberArray[0]) * Number(numberArray[1]))));
+          //      }
+          //      else if ((msg.match[i]).match(/\%/)) {
+          //           numberArray = operationArray[i].split('%');
+          //           calcs.push(msg.send( "Calculated " + (Number(numberArray[0]) % Number(numberArray[1]))));
+          //      }
+          // }  
+          // return calcs; 
      }); 
 
 };  
