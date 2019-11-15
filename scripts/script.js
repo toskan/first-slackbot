@@ -2,20 +2,20 @@ let codeHumorArr = ["https://preview.redd.it/lqjoadneq8y31.jpg?width=640&crop=sm
 let regExCodeWord;
 //date variables would have to be altered for new class with new class times (in GMT)
 let now = new Date().getTime();
-let date1 = new Date('November 13, 2019 00:00:00').getTime();
-let date2 = new Date('November 15, 2019 00:00:00').getTime();
-let date3 = new Date('November 20, 2019 00:00:00').getTime(); 
-let date4 = new Date('November 22, 2019 00:00:00').getTime();
-let date5 = new Date('November 27, 2019 00:00:00').getTime();
-let date6 = new Date('December 4, 2019 00:00:00').getTime();
-let date7 = new Date('December 6, 2019 00:00:00').getTime();
-let date8 = new Date('December 11, 2019 00:00:00').getTime();
-let date9 = new Date('December 13, 2019 00:00:00').getTime();
-let date10 = new Date('December 18, 2019 00:00:00').getTime();
-let date11 = new Date('December 20, 2019 00:00:00').getTime();
-let date12 = new Date('January 3, 2019 00:00:00').getTime();
-let date13 = new Date('January 8, 2019 00:00:00').getTime();
-let date14 = new Date('January 10, 2019 00:00:00').getTime();
+let date1 = new Date(Date.UTC(2019, 10, 12, 24, 0, 0, 0)).getTime();
+let date2 = new Date(Date.UTC(2019, 10, 14, 24, 0, 0, 0)).getTime();
+let date3 = new Date(Date.UTC(2019, 10, 19, 24, 0, 0, 0)).getTime();
+let date4 = new Date(Date.UTC(2019, 10, 21, 24, 0, 0, 0)).getTime();
+let date5 = new Date(Date.UTC(2019, 10, 26, 24, 0, 0, 0)).getTime();
+let date6 = new Date(Date.UTC(2019, 11, 3, 24, 0, 0, 0)).getTime();
+let date7 = new Date(Date.UTC(2019, 11, 5, 24, 0, 0, 0)).getTime();
+let date8 = new Date(Date.UTC(2019, 11, 10, 24, 0, 0, 0)).getTime();
+let date9 = new Date(Date.UTC(2019, 11, 12, 24, 0, 0, 0)).getTime();
+let date10 = new Date(Date.UTC(2019, 11, 17, 24, 0, 0, 0)).getTime();
+let date11 = new Date(Date.UTC(2019, 11, 19, 24, 0, 0, 0)).getTime();
+let date12 = new Date(Date.UTC(2020, 0, 2, 24, 0, 0, 0)).getTime();
+let date13 = new Date(Date.UTC(2020, 0, 7, 24, 0, 0, 0)).getTime();
+let date14 = new Date(Date.UTC(2020, 0, 9, 24, 0, 0, 0)).getTime();
 let classDates = [date1, date2, date3, date4, date5, date6, date7, date8, date9, date10, date11, date12, date13, date14];
 //this selects the smalles number in the array that is larger than let now
 let result = Math.min.apply(Math, classDates.filter(function(x){return x > now}));
@@ -149,36 +149,13 @@ module.exports = function(robot) {
 
           //this function can take an operation (-, +, *, %, /) with two (positive only, sorry) numbers. Written as NumberOperatorNumber or multiples NumberOperatorNumber NumberOperatorNumber NumberOperatorNumber, which returns result result result
 
-          // \d*\*\d*|\d*\+\d*|\d*\-\d*|\d*\/\d*|\d*\%\d*&&^(?!\s*$).+
-
           robot.respond(/\d*\*\d*|\d*\+\d*|\d*\-\d*|\d*\/\d*|\d*\%\d*&&^(?!\s*$).+/g, function(msg) {
-          let operationArray = msg.match;
-          return msg.send(operationArray + " + " + operationArray[0] + " + " + operationArray[1] + "  + "  + operationArray.length + " + ");
-          // let numberArray = [];
-          // let calcs = [];
-          //      for (let i = 0; i < operationArray.length; i++) {
-          //      if ((operationArray[i]).match(/\+/)) {
-          //           numberArray = operationArray[i].split('+');
-          //           calcs.push(msg.send("Calculated " + (Number(numberArray[0]) + Number(numberArray[1]))));
-          //      }
-          //      else if ((operationArray[i]).match(/\-/)) {
-          //           numberArray = operationArray[i].split('-');
-          //           calcs.push(msg.send( "Calculated " + (Number(numberArray[0]) - Number(numberArray[1]))));
-          //      }
-          //      else if ((operationArray[i]).match(/\//)) {
-          //           numberArray = operationArray[i].split('/');
-          //           calcs.push(msg.send( "Calculated " + (Number(numberArray[0]) / Number(numberArray[1]))));
-          //      }
-          //      else if ((operationArray[i]).match(/\*/)) {
-          //           numberArray = operationArray[i].split('*');
-          //           calcs.push(msg.send( "Calculated " + (Number(numberArray[0]) * Number(numberArray[1]))));
-          //      }
-          //      else if ((msg.match[i]).match(/\%/)) {
-          //           numberArray = operationArray[i].split('%');
-          //           calcs.push(msg.send( "Calculated " + (Number(numberArray[0]) % Number(numberArray[1]))));
-          //      }
-          // }  
-          // return calcs; 
+          let operationArray = msg.envelope.message.text.split(" ");
+          let calcs = [];
+               for (let i = 1; i < operationArray.length; i++) {
+                    calcs.push(msg.reply("Calculated " + (eval(operationArray[i])))); 
+               }
+          return calcs; 
      }); 
 
 };  
